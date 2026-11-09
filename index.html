@@ -332,7 +332,7 @@ if(!NS){NS=TL().filter(t=>/^Amanullah/i.test(t));if(!NS.length)NS=['Amanullah Qu
 function nst(i){const t=TL()[i];NS=NS.includes(t)?NS.filter(x=>x!=t):NS.concat(t);sv('nosub',NS);R()}
 function nsc(){return`<div class="card" style="margin-top:10px"><b style="font-size:16px">🚫 No automatic substitution</b><p style="color:var(--m);margin:6px 0 8px">Teachers shown in red are never chosen automatically as a substitute. You can still add them yourself with <i>Manual Substitution</i> or by choosing them in the substitute list. Tap a name to switch on/off.</p><div class="bar">${TL().map((t,i)=>`<button class="btn ${NS.includes(t)?'r':''}" onclick="nst(${i})">${NS.includes(t)?'🚫 ':''}${esc(t)}</button>`).join('')}</div></div>`}
 const _setv=setv;setv=function(){return _setv()+nsc()};
-const _subv2=subv2;subv2=function(){const n=NS.filter(t=>TL().includes(t));return(n.length?`<div class="card np" style="margin-bottom:10px;border-left:4px solid var(--o)">🚫 Not auto-filled: <strong>${n.map(esc).join(', ')}</strong> – add manually if needed. (Change in Settings)</div>`:'')+_subv2()};
+const _subv2=subv2;subv2=function(){const n=NS.filter(t=>TL().includes(t));return(n.length?`<div class="card np" style="margin-bottom:10px;border-left:4px solid var(--o)">🚫 Substitution is auto-filled: <strong>${n.map(esc).join(', ')}</strong> – add manually if needed. (Change in Settings)</div>`:'')+_subv2()};
 const _wRen=wRen;wRen=function(a,b){_wRen(a,b);NS=NS.map(n=>n==a?b:n);sv('nosub',NS)};
 
 R();
