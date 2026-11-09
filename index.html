@@ -408,4 +408,80 @@ window.__sync=SYNC.push;
 function syncCard(){return`<div class="card" style="margin-top:10px"><b style="font-size:16px">☁️ Online Sync</b><p style="color:var(--m);margin:6px 0">Use the <b>same Sync code</b> on every device. Any change on one device appears on the others automatically. Works offline and uploads when internet returns.</p><p id="syncst" style="margin:6px 0">${SYNC.text()}</p><div class="bar"><input id="syc" value="${SYNC.code()}" placeholder="Sync code" style="flex:1;min-width:180px"><button class="btn p" onclick="if(SYNC.set(document.getElementById('syc').value))R()">Connect</button><button class="btn g" onclick="document.getElementById('syc').value=SYNC.gen()">Generate</button><button class="btn r" onclick="SYNC.off();R()">Disconnect</button></div></div>`}
 const _setv3=setv;setv=function(){return _setv3()+syncCard()};
 SYNC.start();
-</script></body></html>
+</script>
+   <script>
+/* ===== PATCH: (1) no "Not auto-filled" note on Substitutions page  (2) Welcome Duty message as JPG image ===== */
+(function(){
+/* 1. Remove the note (the "no auto substitution" setting itself still works; add manually if needed) */
+const _s=subv2;
+subv2=function(){return _s().replace(/<div class="card np" style="margin-bottom:10px;border-left:4px solid var\(--o\)">🚫 Not auto-filled:[\s\S]*?<\/div>/,'')};
+
+/* 2. Draw the Welcome Duty notice as an image */
+function rr(x,a,b,w,h,r){x.beginPath();x.moveTo(a+r,b);x.arcTo(a+w,b,a+w,b+h,r);x.arcTo(a+w,b+h,a,b+h,r);x.arcTo(a,b+h,a,b,r);x.arcTo(a,b,a+w,b,r);x.closePath()}
+window.wcanvas=function(d){
+ const r=wsim(d).res[d];if(!r||!r.t.length)return null;
+ const names=r.t,mk=r.mk||[],WW=1080,P=70,F='"Segoe UI",Roboto,Helvetica,Arial,sans-serif';
+ const body=wmsg(d).split('\n\n')[0];
+ const c=document.createElement('canvas'),x=c.getContext('2d');
+ const wrap=(t,f,w)=>{x.font=f;const o=[];let l='';t.split(' ').forEach(s=>{const n=l?l+' '+s:s;if(x.measureText(n).width>w&&l){o.push(l);l=s}else l=n});if(l)o.push(l);return o};
+ const bl=wrap(body,'30px '+F,WW-2*P-20);
+ const HH=250,DB=200,NR=100,H=HH+DB+60+names.length*NR+30+bl.length*46+70+190+90;
+ c.width=WW;c.height=H;
+ x.fillStyle='#f3f6fb';x.fillRect(0,0,WW,H);
+ /* header */
+ x.fillStyle='#0f2a4a';x.fillRect(0,0,WW,HH);x.fillStyle='#16a34a';x.fillRect(0,HH-10,WW,10);
+ x.textAlign='center';x.fillStyle='#fff';
+ x.font='bold 40px '+F;x.fillText('GOVT. HIGHER SECONDARY SCHOOL',WW/2,85);
+ x.fillText('PACCA GHALWAN (M.GARH)',WW/2,140);
+ x.font='26px '+F;x.fillStyle='#cbd5e1';x.fillText('School Code: 32330052',WW/2,190);
+ /* title */
+ let y=HH+75;
+ x.fillStyle='#0f2a4a';x.font='bold 52px '+F;x.fillText('WELCOME DUTY NOTICE',WW/2,y);
+ x.fillStyle='#16a34a';x.fillRect(WW/2-120,y+18,240,6);
+ /* date box */
+ y+=60;rr(x,P,y,WW-2*P,130,22);x.fillStyle='#fff';x.fill();x.lineWidth=3;x.strokeStyle='#d6dfec';x.stroke();
+ x.fillStyle='#0f2a4a';x.font='bold 40px '+F;x.fillText(wdl(d),WW/2,y+58);
+ x.fillStyle='#475569';x.font='30px '+F;x.fillText('School Entrance Gate  •  '+W.time,WW/2,y+105);
+ /* teachers */
+ y+=130+50;x.textAlign='left';x.fillStyle='#16a34a';x.font='bold 28px '+F;x.fillText('DUTY '+(names.length>1?'TEACHERS':'TEACHER'),P,y);
+ y+=22;
+ names.forEach((n,i)=>{rr(x,P,y,WW-2*P,84,18);x.fillStyle='#0f2a4a';x.fill();
+  x.beginPath();x.arc(P+48,y+42,26,0,7);x.fillStyle='#16a34a';x.fill();
+  x.fillStyle='#fff';x.textAlign='center';x.font='bold 30px '+F;x.fillText(String(i+1),P+48,y+53);
+  x.textAlign='left';x.font='bold 38px '+F;x.fillText(n,P+95,y+54);
+  if(mk.includes(n)){x.textAlign='right';x.font='bold 22px '+F;x.fillStyle='#fbbf24';x.fillText('MAKE-UP DUTY',WW-P-25,y+50);x.textAlign='left'}
+  y+=NR});
+ /* message */
+ y+=20;rr(x,P,y,WW-2*P,bl.length*46+40,18);x.fillStyle='#fff';x.fill();x.lineWidth=3;x.strokeStyle='#d6dfec';x.stroke();
+ x.fillStyle='#1e293b';x.font='30px '+F;x.textAlign='left';
+ bl.forEach((l,i)=>x.fillText(l,P+20,y+58+i*46));
+ y+=bl.length*46+40+70;
+ /* signature */
+ x.strokeStyle='#0f2a4a';x.lineWidth=2;x.beginPath();x.moveTo(WW-P-380,y);x.lineTo(WW-P,y);x.stroke();
+ x.textAlign='center';x.fillStyle='#475569';x.font='26px '+F;x.fillText('Principal GHSS Pacca Ghalwan',WW-P-190,y+40);
+ x.fillStyle='#0f2a4a';x.font='bold 34px '+F;x.fillText(W.princ,WW-P-190,y+84);
+ /* footer */
+ x.fillStyle='#0f2a4a';x.fillRect(0,H-80,WW,80);
+ x.fillStyle='#fff';x.font='26px '+F;x.fillText('Software by: IT Expert Amanullah Qureshi',WW/2,H-30);
+ return c};
+window.wimgUrl=d=>{const c=wcanvas(d);return c?c.toDataURL('image/jpeg',.92):''};
+function dl(b,d){const u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='Welcome_Duty_'+d+'.jpg';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),30000)}
+window.wdown=function(d){const c=wcanvas(d);if(!c)return;c.toBlob(b=>{dl(b,d);wtoast('JPG saved to your phone')},'image/jpeg',.92)};
+/* Send = share the JPG (WhatsApp appears in the share list); if sharing files is not supported, the JPG is saved instead */
+wsend=function(d){const c=wcanvas(d);if(!c)return;
+ c.toBlob(b=>{const f=new File([b],'Welcome_Duty_'+d+'.jpg',{type:'image/jpeg'}),key=wnames(d).join('|');
+  const done=()=>{W.sent[d]=key;wsave();R()};
+  if(navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({files:[f],title:'Welcome Duty'}).then(done).catch(()=>{})}
+  else{dl(b,d);done();const dg=(W.num||'').replace(/\D/g,'');wtoast('JPG saved – open WhatsApp'+(W.grp?' group “'+W.grp+'”':'')+' and attach it.');if(W.mode=='num'&&dg)window.open('https://wa.me/'+dg,'_blank')}
+ },'image/jpeg',.92)};
+wcopy=wdown;
+/* Welcome Duty page: show the JPG instead of the text message */
+const _w=wdv;
+wdv=function(){let h=_w();
+ h=h.replace(/<div class="wmsg">[\s\S]*?<\/div><div class="bar">[\s\S]*?<\/div>/,m=>{const k=m.match(/wsend\('([^']*)'\)/);if(!k)return m;const d=k[1],u=wimgUrl(d);
+  return `<img src="${u}" alt="Welcome duty notice" style="width:100%;max-width:520px;border-radius:12px;border:1px solid var(--b);display:block;margin:8px 0"><div class="bar"><button class="btn g" onclick="wsend('${d}')">🖼 Send JPG on WhatsApp</button><button class="btn" onclick="wdown('${d}')">⬇ Save JPG</button></div>`});
+ return h.replace('💬 WhatsApp message','🖼 WhatsApp message (JPG image)')};
+R();
+})();
+   </script>
+</body></html>
