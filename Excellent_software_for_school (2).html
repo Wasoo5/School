@@ -1,0 +1,411 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>GHSS Pacca Ghalwan – Timetable & Attendance</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef3f9;--c:#fff;--t:#14213d;--m:#5c6b82;--p:#1d4ed8;--g:#16a34a;--r:#dc2626;--o:#d97706;--b:#d5deea;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f172a;--c:#1e293b;--t:#e8eefc;--m:#9fb0cc;--p:#60a5fa;--g:#4ade80;--r:#f87171;--o:#fbbf24;--b:#334155}}
+:root[data-theme="dark"]{--bg:#0f172a;--c:#1e293b;--t:#e8eefc;--m:#9fb0cc;--p:#60a5fa;--g:#4ade80;--r:#f87171;--o:#fbbf24;--b:#334155}
+*{box-sizing:border-box}html,body{margin:0}body{background:var(--bg);color:var(--t);font:15px/1.4 system-ui,Segoe UI,Roboto,sans-serif}
+header{background:linear-gradient(135deg,#1d4ed8,#0e7490);color:#fff;padding:14px 16px}header h1{margin:0;font-size:18px}header small{opacity:.85}
+nav{display:flex;gap:6px;overflow-x:auto;padding:10px 12px;position:sticky;top:0;background:var(--bg);z-index:5}
+nav button,.btn{border:0;border-radius:10px;padding:10px 14px;font:600 14px inherit;background:var(--c);color:var(--t);border:1px solid var(--b);cursor:pointer;white-space:nowrap}
+nav button.on,.btn.p{background:var(--p);color:#fff;border-color:var(--p)}.btn.g{background:var(--g);color:#fff}.btn.r{background:var(--r);color:#fff}.btn.o{background:var(--o);color:#fff}
+main{padding:0 12px 30px;max-width:1100px;margin:auto}
+.bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 12px}input,select{padding:9px;border-radius:8px;border:1px solid var(--b);background:var(--c);color:var(--t);font:inherit}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.card{background:var(--c);border:1px solid var(--b);border-radius:14px;padding:14px;box-shadow:0 2px 6px #0001}.card b{display:block;font-size:30px}.card span{color:var(--m);font-size:13px}
+.pb{height:12px;border-radius:8px;background:var(--b);overflow:hidden;margin-top:8px}.pb i{display:block;height:100%;background:var(--g)}
+.w{overflow-x:auto;background:var(--c);border-radius:12px;border:1px solid var(--b)}table{border-collapse:collapse;width:100%}th,td{border:1px solid var(--b);padding:6px 8px;text-align:left;font-size:13px;vertical-align:top}th{background:var(--p);color:#fff}
+.tc{cursor:pointer;min-width:105px}.tc s{color:var(--r)}.tc em{color:var(--o);font-style:normal;font-weight:700}
+.st{display:flex;gap:6px}.st .btn{padding:7px 12px}.dim{opacity:.35}
+.sheet{background:#fff;color:#000;padding:16px;border-radius:10px;margin-top:12px}.sheet th{background:#e5e7eb;color:#000}.sheet td,.sheet th{border-color:#888}
+.hd{text-align:center;margin-bottom:10px}.hd h2{margin:0;font-size:17px}.hd h3{margin:6px 0 2px}
+.sig{display:flex;justify-content:space-between;margin-top:50px;gap:20px}.sig div{text-align:center;flex:1}.sig span{display:block;border-top:1px solid #000;margin:0 10px 4px}
+.msg{text-align:center;margin-top:22px;font-size:12px;border-top:1px dashed #888;padding-top:6px}
+.ov{position:fixed;inset:0;background:#0008;display:flex;align-items:center;justify-content:center;z-index:50;padding:16px}.ov .card{width:100%;max-width:420px}textarea{background:var(--c);color:var(--t);border:1px solid var(--b);border-radius:8px;padding:8px;font:inherit}.sheet table.sm td,.sheet table.sm th{padding:2px 3px;font-size:10px}
+.sheet{border-top:6px solid #1d4ed8}.sheet .hd{background:linear-gradient(135deg,#1d4ed8,#0e7490);border-radius:10px;padding:12px}.sheet .hd h2,.sheet .hd h3,.sheet .hd div{color:#fff}.sheet th{background:#1d4ed8;color:#fff}.sheet td,.sheet th{border-color:#b6c4dc}.sheet tr:nth-child(even) td{background:#eef4ff}.sheet td:first-child{font-weight:600}.sheet s{color:#dc2626}.sheet td b{color:#15803d}.sheet .sig b{color:#000}.sheet .sig span{border-color:#1d4ed8}.sheet .msg{color:#1d4ed8;font-weight:700;border-top:2px solid #1d4ed8}
+.bd{display:inline-block;min-width:24px;text-align:center;border-radius:12px;padding:1px 9px;font-weight:700;color:#fff}.bg{background:#16a34a}.br{background:#dc2626}.bo{background:#d97706}.bb{background:#2563eb}.bv{background:#7c3aed}.pc{display:inline-block;height:8px;border-radius:4px;vertical-align:middle;margin-left:6px}.chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.chip{border-radius:10px;padding:6px 12px;color:#fff;font-weight:700;font-size:13px}
+@media print{*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+@media print{:root:root{--c:#fff;--t:#000}body{background:#fff}.np{display:none!important}main{padding:0;max-width:none}.sheet{margin:0;padding:0;border-radius:0}@page{size:A4;margin:12mm}}
+body.bw .sheet{border-top:0;color:#000}body.bw .sheet .hd{background:none;border:0;border-bottom:2px solid #000;border-radius:0}body.bw .sheet .hd h2,body.bw .sheet .hd h3,body.bw .sheet .hd div{color:#000}
+body.bw .sheet th{background:#fff!important;color:#000;border:1.5px solid #000;font-weight:800}body.bw .sheet td{border-color:#000;color:#000}body.bw .sheet tr:nth-child(even) td{background:#fff}body.bw .sheet s,body.bw .sheet td b,body.bw .sheet .sig b{color:#000}
+body.bw .sheet .bd{background:#fff!important;color:#000;border:1px solid #000}body.bw .sheet .bd.br{font-weight:900;text-decoration:underline}body.bw .sheet .pc{background:#000!important}body.bw .sheet .chip{background:#fff!important;color:#000;border:1px solid #000}
+body.bw .sheet .msg{color:#000;border-top:1px dashed #000}body.bw .sheet .sig span{border-color:#000}
+@media screen and (max-width:700px){html,body{overflow-x:hidden}header h1{font-size:16px}nav{display:grid;grid-template-columns:1fr 1fr;overflow:visible;position:static}nav button{white-space:normal;padding:12px 8px}.grid{grid-template-columns:1fr 1fr}.bar{flex-direction:column;align-items:stretch}.bar>*{width:100%;max-width:100%;flex:none}.bar label{display:flex;flex-direction:column;gap:4px}.bar .btn{white-space:normal}.card .bar input{min-width:0!important}.ov .card{max-height:90vh;overflow:auto}}
+
+/* ===== Welcome Duty ===== */
+.wb{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:space-between;background:#b45309;color:#fff;border-radius:10px;padding:10px 12px;margin:8px 0;font-weight:600}.wb .btn{border:0;background:#fff;color:#111;padding:8px 12px}
+.wl{margin-bottom:6px}.wl .btn{padding:4px 10px;font-size:12px}.wn{font-size:12px;color:var(--o);margin-top:3px}.wn .btn{padding:3px 8px;font-size:11px}
+.wt{display:inline-block;border-radius:6px;padding:1px 7px;font-size:11px;font-weight:700;background:var(--p);color:#fff}.wt.mk{background:#7c3aed}.wt.td{background:var(--r)}.wt.tm{background:var(--o)}
+tr.wh td{background:#dc262618}tr.wtd td{background:#16a34a18}
+.wmsg{white-space:pre-wrap;background:var(--bg);border:1px solid var(--b);border-radius:10px;padding:12px;margin:8px 0;line-height:1.55}
+.wp{display:none}
+#wtoast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#111;color:#fff;padding:10px 16px;border-radius:10px;z-index:99;max-width:90vw;display:none;font-size:14px}
+@media print{body.pw #wbn{display:none}body.pw .wp{display:block!important}}
+
+/* ===== Professional dashboard theme ===== */
+:root{--bg:#f3f5f9;--c:#fff;--t:#0f1b2d;--m:#5b6779;--p:#1e3a8a;--g:#15803d;--r:#b91c1c;--o:#b45309;--b:#d8dde6;--navy:#0f2342;--gold:#c9a227;--ft:Inter,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1220;--c:#131c2e;--t:#e6ebf5;--m:#94a3b8;--p:#60a5fa;--g:#4ade80;--r:#f87171;--o:#fbbf24;--b:#26324a;--navy:#0a1428}}
+:root[data-theme="dark"]{--bg:#0b1220;--c:#131c2e;--t:#e6ebf5;--m:#94a3b8;--p:#60a5fa;--g:#4ade80;--r:#f87171;--o:#fbbf24;--b:#26324a;--navy:#0a1428}
+body,input,select,textarea,button{font-family:var(--ft)}
+body{font-size:14.5px;line-height:1.5;background:var(--bg);-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+header{background:var(--navy);border-bottom:3px solid var(--gold);padding:13px 22px;box-shadow:0 2px 8px #0003}
+header h1{font-size:17px;font-weight:700;letter-spacing:.6px}header small{opacity:.75;letter-spacing:.3px}
+nav{background:var(--bg);box-shadow:0 1px 0 var(--b);gap:6px}
+nav button{background:var(--c);color:var(--t);border:1px solid var(--b);border-radius:8px;font-weight:600;font-size:13.5px;padding:10px 14px}
+nav button:hover{border-color:var(--p)}nav button.on{background:var(--navy);color:#fff;border-color:var(--navy);box-shadow:inset 0 -3px 0 var(--gold)}
+main{max-width:1240px;padding:6px 20px 40px}
+h3{font-size:14px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--m);margin:22px 0 10px;display:flex;align-items:center;gap:8px}h3::before{content:"";width:3px;height:16px;background:var(--gold);border-radius:2px}
+.card{border-radius:10px;box-shadow:0 1px 2px #0f1b2d12}
+.grid>.card{border-left:4px solid var(--p);padding:12px 14px}.grid>.card:nth-child(2){border-left-color:#15803d}.grid>.card:nth-child(3){border-left-color:#b91c1c}.grid>.card:nth-child(4){border-left-color:#b45309}
+.card b{font-weight:700}.grid>.card b{font-size:28px;line-height:1.15}
+.card span{font-weight:600;font-size:11.5px;letter-spacing:.5px;text-transform:uppercase}
+.btn{border-radius:8px;font-weight:600;font-size:13.5px;padding:9px 14px;box-shadow:0 1px 1px #0f1b2d0d}.btn:hover{filter:brightness(.96)}
+.btn.p{background:var(--p);border-color:var(--p);color:#fff}.btn.g{background:var(--g);border-color:var(--g);color:#fff}.btn.r{background:var(--r);border-color:var(--r);color:#fff}.btn.o{background:var(--o);border-color:var(--o);color:#fff}
+:root[data-theme="dark"] .btn.p,:root[data-theme="dark"] .btn.g,:root[data-theme="dark"] .btn.r,:root[data-theme="dark"] .btn.o{color:#0b1220}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn.p,:root:not([data-theme="light"]) .btn.g,:root:not([data-theme="light"]) .btn.r,:root:not([data-theme="light"]) .btn.o{color:#0b1220}}
+input,select,textarea{border-radius:8px;font-size:14px}
+input:focus,select:focus,textarea:focus{outline:2px solid color-mix(in srgb,var(--p) 40%,transparent);border-color:var(--p)}
+.w{border-radius:10px;box-shadow:0 1px 2px #0f1b2d10}
+th{background:var(--navy);color:#fff;font-weight:600;font-size:12px;letter-spacing:.5px;text-transform:uppercase;border-color:#ffffff22}
+td{font-size:13.5px}.w tr:nth-child(even) td{background:color-mix(in srgb,var(--p) 4%,var(--c))}.w tr:hover td{background:color-mix(in srgb,var(--p) 9%,var(--c))}
+.pb{height:8px;border-radius:6px}.pb i{background:var(--p)}
+.bd,.chip{border-radius:6px;font-weight:600}.bg{background:#15803d}.br{background:#b91c1c}.bo{background:#b45309}.bb{background:#1e40af}.bv{background:#5b21b6}
+.wb{background:#9a4a0a;border-radius:10px}.wt{border-radius:6px}
+/* reports keep a formal look */
+.sheet{border-top:4px solid var(--navy);border-radius:8px;font-family:Georgia,"Times New Roman",serif}
+.sheet table,.sheet td,.sheet th{font-family:var(--ft)}
+.sheet .hd{background:var(--navy);border-radius:6px;border-bottom:3px solid var(--gold)}.sheet .hd h2{font-family:Georgia,"Times New Roman",serif;letter-spacing:.8px}
+.sheet th{background:var(--navy)}.sheet tr:nth-child(even) td{background:#f3f5f9}.sheet .sig span{border-color:var(--navy)}.sheet .msg{color:var(--navy);border-top:2px solid var(--navy)}
+/* sidebar layout on desktop */
+@media(min-width:900px){
+body{padding-left:236px}
+nav{position:fixed;top:0;left:0;bottom:0;width:236px;flex-direction:column;overflow-x:hidden;overflow-y:auto;background:var(--navy);box-shadow:none;padding:70px 10px 20px;gap:3px;z-index:30}
+nav::before{content:"GHSS PACCA GHALWAN";position:absolute;top:0;left:0;right:0;padding:20px 16px 14px;font-weight:700;font-size:13px;letter-spacing:1.5px;color:#fff;border-bottom:3px solid var(--gold)}
+nav button{background:transparent;color:#d3ddef;border:0;border-left:3px solid transparent;border-radius:6px;text-align:left;font-weight:500;padding:12px 14px;white-space:nowrap}
+nav button:hover{background:#ffffff14;color:#fff}
+nav button.on{background:#ffffff1f;color:#fff;border-left-color:var(--gold);box-shadow:none;font-weight:600}
+}
+@media screen and (max-width:700px){nav button{font-size:13px;border-radius:8px}main{padding:6px 12px 40px}}
+@media print{body{padding-left:0!important}}
+</style></head><body>
+<header class="np"><h1>GHSS Pacca Ghalwan (M.Garh) – Timetable & Attendance</h1><small>School Code 32330052</small></header>
+<nav class="np"><button data-v="dash" onclick="go('dash')">🏠 Dashboard</button><button data-v="att" onclick="go('att')">✅ Attendance</button><button data-v="tt" onclick="go('tt')">🗓 Timetable</button><button data-v="sub" onclick="go('sub')">🔁 Substitutions</button><button data-v="wd" onclick="go('wd')">🤝 Welcome Duty</button><button data-v="rep" onclick="go('rep')">🖨 Reports</button><button data-v="set" onclick="go('set')">⚙ Settings</button></nav>
+<main><div class="bar np"><label>Date <input type="date" id="dt" onchange="day=this.value;R()"></label></div><div id="v"></div></main>
+<script>
+const PT0=['9:00–9:35','9:35–10:05','10:05–10:35','10:35–11:05','11:05–11:35','11:35–12:05','12:05–12:35','1:00–1:30'];
+const D0={
+"2nd Year":[["Urdu","Shabir"],["Computer","Amanullah,Ashiq"],["Math","Irfan"],["Islamiyat/Elective","Naeeb"],["English","Baqir"],["Ist/TQ","Mufti"],["Pak.St","Shabir"],["Physics/Civics","Ashiq,Jamshaid"]],
+"1st Year":[["Ist/TQ","Mufti,G.Yaseen"],["Urdu","Shabir"],["English","Baqir"],["Chemistry","G.Yaseen"],["Computer","Amanullah"],["Islamiyat","Naeem"],["Economics/Civics","G.Rasool"],["Physics/Math/Bio","Jahanzaib,Irfan,G.Rasool"]],
+"10th":[["Math","Jamshaid"],["Isl/TQ","Naeem"],["Chemistry","G.Yaseen"],["Urdu","Shabir"],["English","Baqir"],["Bio/Computer","Arshad Yaseen,Amanullah"],["Physics","Ashiq"],["Pak.St","Jamshaid"]],
+"9th":[["Physics","Ashiq"],["English","Baqir"],["Chemistry","Arif"],["Math","Jamshaid"],["Urdu","Shabir"],["TQ/Isl","Naeem"],["Bio/Computer","Arshad Yaseen,Amanullah"],["Physics","Ashiq"]],
+"8th":[["Science","Nadir"],["Urdu","Yameen"],["Computer","Amanullah"],["Geography","Jahanzaib"],["Math","Irfan"],["English","Baqir"],["Islamiyat","Jahanzaib"],["TQ","Arif"]],
+"7th B":[["Urdu","Arif"],["Math","Irfan"],["Computer","Jahanzaib"],["Science","Nadir"],["English","Arif"],["TQ","Arif"],["Geography","Shaheen"],["Islamiyat","Yameen"]],
+"7th A":[["Urdu","Shaheen"],["English","Shaheen"],["Science","Nadir"],["Islamiyat","Miss Ruqia"],["Computer","Miss Ruqia"],["TQ","Yameen"],["Math","Irfan"],["Geography","Shaheen"]],
+"6th":[["Science","Arshad Yaseen"],["English","Arshad Yaseen"],["Islamiyat","Miss Ruqia"],["Geography","Yameen"],["Math","Nadir"],["Urdu","Miss Ruqia"],["TQ","Yameen"],["Computer","Jahanzaib"]],
+"5th":[["TQ","Nadir"],["English","Nadir"],["Islamiyat","Nadir"],["Math","Nadir"],["Urdu","Nasir"],["Science","G.Rasool"],["Pak.St","Nadir"],["Math","Nasir"]],
+"4th":[["Nazra","Abid"],["Urdu","Abid"],["Science","G.Rasool"],["English","Abid"],["Islamiyat","Abid"],["Math","Abid"],["Islamiyat","Abid"],["Dictation","Abid"]],
+"3rd":[["Nazra","Zaffar"],["English","Zaffar"],["English","Zaffar"],["Math","G.Rasool"],["Math","Zaffar"],["Islamiyat","Zaffar"],["Urdu","Zaffar"],["G.K","Zaffar"]],
+"2nd":[["Nazra","Ismail"],["G.K","Ismail"],["Urdu","Ismail"],["English","Ismail"],["English","Ismail"],["Math","Ismail"],["Islamiyat","G.Rasool"],["Math","Ismail"]],
+"1st":[["Norani Qaida","Atique"],["English","Atique"],["English","Atique"],["Math","Atique"],["Math","Atique"],["Urdu","Atique"],["Urdu Dictation","Atique"],["English Dictation","Atique"]],
+"Kachi":[["Norani Qaida","Miss Saira"],["Urdu","Miss Saira"],["English","Miss Saira"],["English","Miss Saira"],["Math","Miss Saira"],["Math","Miss Saira"],["Urdu Dictation","Miss Saira"],["",""]]};
+const $=s=>document.querySelector(s),ld=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}},sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}try{window.__sync&&window.__sync(k)}catch(e){}};
+let PT=ld('pt',PT0.slice()),TX=ld('tex',[]),D=ld('tt',D0),A=ld('att',{}),view='dash',day=new Date(Date.now()-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,10);
+const tn=(c,p)=>D[c][p][1]?D[c][p][1].split(',').map(x=>x.trim()).filter(Boolean):[];
+const TL=()=>{const s=new Set(TX);for(const c in D)for(let p=0;p<8;p++)tn(c,p).forEach(n=>s.add(n));return[...s].sort()};
+const st=(d,t)=>(A[d]&&A[d][t])||'P',SN={P:'Present',A:'Absent',L:'Leave'};
+function subs(d){const T=TL(),ab=T.filter(t=>st(d,t)!='P'),ld={},u={},o=[];
+for(let p=0;p<8;p++){const busy=new Set();for(const c in D)tn(c,p).forEach(t=>busy.add(t));
+for(const c in D)tn(c,p).forEach(t=>{if(ab.includes(t)){const f=T.filter(x=>st(d,x)=='P'&&!busy.has(x)&&!u[p+x]).sort((a,b)=>(ld[a]||0)-(ld[b]||0));const s=f[0];if(s){u[p+s]=1;ld[s]=(ld[s]||0)+1}o.push({c,p,sj:D[c][p][0],ab:t,sb:s||''})}})}return o}
+function go(v){view=v;R()}
+function R(){$('#dt').value=day;$('#v').innerHTML=({dash,att:attv2,tt:ttv,sub:subv2,wd:wdv,rep:repv2,set:setv})[view]();document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.v==view));wbn()}
+function dash(){const T=TL(),n=T.length,c=k=>T.filter(t=>st(day,t)==k).length,S=subs(day).filter(s=>s.mn!=2),cv=S.filter(x=>x.sb).length,pc=n?Math.round(c('P')*100/n):0;
+return`<div class="grid"><div class="card"><b>${n}</b><span>Total Teachers</span></div><div class="card"><b style="color:var(--g)">${c('P')}</b><span>Present</span></div><div class="card"><b style="color:var(--r)">${c('A')}</b><span>Absent</span></div><div class="card"><b style="color:var(--o)">${c('L')}</b><span>On Leave</span></div><div class="card"><b>${Object.keys(D).length}</b><span>Classes</span></div><div class="card"><b>${S.length}</b><span>Periods to Cover</span></div><div class="card"><b style="color:var(--g)">${cv}</b><span>Auto-Filled</span></div><div class="card"><b style="color:var(--r)">${S.length-cv}</b><span>Not Covered</span></div></div>
+<div class="card" style="margin-top:10px">Attendance today: <b style="display:inline;font-size:18px">${pc}%</b><div class="pb"><i style="width:${pc}%"></i></div></div>
+<div class="bar" style="margin-top:12px"><button class="btn p" onclick="go('att')">✅ Mark Attendance</button><button class="btn g" onclick="go('sub');mx()">➕ Manual Substitution</button><button class="btn g" onclick="go('sub')">🔁 Substitutions</button><button class="btn o" onclick="go('tt')">🗓 Timetable</button><button class="btn" onclick="go('rep')">📊 Reports</button><button class="btn r" onclick="pt()">🖨 Print Today’s Sheet</button></div>
+<h3>Absent / on leave today</h3>${T.filter(t=>st(day,t)!='P').map(t=>{const x=S.filter(s=>s.ab==t);return`<div class="card" style="margin-bottom:8px"><b style="font-size:16px">${t} <small style="color:var(--${st(day,t)=='A'?'r':'o'})">${SN[st(day,t)]}</small></b><span>${x.length} period(s): ${x.map(s=>`P${s.p+1} ${s.c} → ${s.sb||'⚠ none free'}`).join(' • ')||'—'}</span></div>`}).join('')||'<div class="card">Everyone is present 🎉</div>'}`}
+function setS(t,s){A[day]=A[day]||{};if(s=='P')delete A[day][t];else A[day][t]=s;sv('att',A);R()}
+function allP(){delete A[day];sv('att',A);R()}
+function attv(){return`<div class="bar"><button class="btn g" onclick="allP()">Mark All Present</button></div><div class="w"><table>${TL().map(t=>{const s=st(day,t);return`<tr><td><b>${t}</b></td><td><div class="st"><button class="btn ${s=='P'?'g':'dim'}" onclick="setS('${t}','P')">P</button><button class="btn ${s=='A'?'r':'dim'}" onclick="setS('${t}','A')">A</button><button class="btn ${s=='L'?'o':'dim'}" onclick="setS('${t}','L')">L</button></div></td></tr>`}).join('')}</table></div><p style="color:var(--m)">P = Present, A = Absent, L = Leave. Free teachers cover absent periods automatically.</p>`}
+let tcl='';
+function ttv(){const S=subs(day),cs=Object.keys(D).filter(c=>!tcl||c==tcl);
+return`<div class="bar"><select onchange="tcl=this.value;R()"><option value="">All classes</option>${Object.keys(D).map(c=>`<option ${c==tcl?'selected':''}>${c}</option>`)}</select><button class="btn r" onclick="ptt('ttC')">🖨 Print class timetable</button><button class="btn r" onclick="ptt('ttT')">🖨 Print teacher timetable</button><span style="color:var(--m)">Tap a cell to edit (red outline = teacher clash). <s style="color:var(--r)">Absent</s> → <em style="color:var(--o)">substitute</em></span></div><div class="w"><table><tr><th>Class</th>${PT.map((x,i)=>`<th>P${i+1}<br><small>${x}</small></th>`).join('')}</tr>${cs.map(c=>`<tr><th style="background:var(--m)">${c}</th>${D[c].map((x,p)=>`<td class="tc" style="${cfl(c,p)?'outline:2px solid var(--r);outline-offset:-2px':''}" onclick="ed('${c}',${p})">${x[0]}<br>${tn(c,p).map(t=>{const s=S.find(z=>z.c==c&&z.p==p&&z.ab==t);return s?`<s>${t}</s> <em>${s.sb||'⚠'}</em>`:t}).join(', ')}</td>`).join('')}</tr>`).join('')}</table></div>`}
+function ed(c,p){const s=prompt(c+' – Period '+(p+1)+'\nSubject:',D[c][p][0]);if(s===null)return;const t=prompt('Teacher(s), comma separated (blank = free):',D[c][p][1]);if(t===null)return;D[c][p]=[s.trim(),t.trim()];sv('tt',D);R()}
+function subv(){const S=subs(day);return`<div class="bar"><button class="btn r" onclick="pt()">🖨 Print</button></div><div class="w"><table><tr><th>Period</th><th>Class</th><th>Subject</th><th>Absent</th><th>Substitute</th></tr>${S.map(s=>`<tr><td>P${s.p+1} <small>${PT[s.p]}</small></td><td>${s.c}</td><td>${s.sj}</td><td>${s.ab}</td><td style="color:var(--${s.sb?'g':'r'});font-weight:700">${s.sb||'⚠ none free'}</td></tr>`).join('')||'<tr><td colspan="5">No substitutions needed.</td></tr>'}</table></div>`}
+function repv(){return`<div class="card np"><div class="bar"><select id="ty"><option value="att">Attendance summary</option><option value="sub">Substitution report</option><option value="ttT">Teacher timetable</option><option value="ttC">Class timetable</option></select><label>From <input type="date" id="f" value="${day}"></label><label>To <input type="date" id="to" value="${day}"></label></div><div class="bar"><select id="te"><option value="">All teachers</option>${TL().map(t=>`<option>${t}</option>`)}</select><select id="cl"><option value="">All classes</option>${Object.keys(D).map(c=>`<option>${c}</option>`)}</select><button class="btn p" onclick="gen()">Generate</button><button class="btn g" onclick="window.print()">🖨 Print A4</button></div></div><div id="out"></div>`}
+function dts(f,t){const a=[];let d=new Date(f+'T00:00:00Z');while(d.toISOString().slice(0,10)<=t&&a.length<400){if(d.getUTCDay())a.push(d.toISOString().slice(0,10));d.setUTCDate(d.getUTCDate()+1)}return a}
+function gen(){const ty=$('#ty').value,f=$('#f').value,t2=$('#to').value,te=$('#te').value,cl=$('#cl').value,ds=dts(f,t2),T=TL().filter(t=>!te||t==te),C=Object.keys(D).filter(c=>!cl||c==cl);let ti,h;
+const tb=(hd,rows)=>`<table><tr>${hd.map(x=>`<th>${x}</th>`).join('')}</tr>${rows.map(r=>`<tr>${r.map(x=>`<td>${x}</td>`).join('')}</tr>`).join('')}</table>`;
+if(ty=='att'){ti='Teacher Attendance Summary';h=tb(['#','Teacher','Present','Absent','Leave','Days','%'+(f==t2?'':'')],T.map((t,i)=>{const k={P:0,A:0,L:0};ds.forEach(d=>k[st(d,t)]++);return[i+1,t,k.P,k.A,k.L,ds.length,ds.length?Math.round(k.P*100/ds.length)+'%':'-']}))}
+else if(ty=='sub'){ti='Substitution Report';const r=[];ds.forEach(d=>subs(d).filter(s=>(!te||s.ab==te||s.sb==te)&&(!cl||s.c==cl)).forEach(s=>r.push([d,'P'+(s.p+1)+' '+PT[s.p],s.c,s.sj,s.ab,s.sb||'⚠ none'])));h=tb(['Date','Period','Class','Subject','Absent','Substitute'],r)}
+else if(ty=='ttT'){ti='Teacher-wise Timetable';h=tb(['Teacher',...PT.map((x,i)=>'P'+(i+1)+'<br>'+x)],T.map(t=>[t,...PT.map((x,p)=>C.filter(c=>tn(c,p).includes(t)).map(c=>c+' '+D[c][p][0]).join('; ')||'—')]))}
+else{ti='Class-wise Timetable';h=tb(['Class',...PT.map((x,i)=>'P'+(i+1)+'<br>'+x)],C.map(c=>[c,...D[c].map(x=>x[0]?x[0]+'<br>'+x[1]:'—')]))}
+$('#out').innerHTML=`<div class="sheet"><div class="hd"><h2>GOVT. HIGHER SECONDARY SCHOOL PACCA GHALWAN (M.GARH)</h2><div>School Code: 32330052</div><h3>${ti}</h3><div>${ty.startsWith('tt')?'Weekly Schedule':f==t2?f:f+' to '+t2}${te?' • '+te:''}${cl?' • '+cl:''}</div></div>${h}<div class="sig"><div><span></span>Timetable Expert<br><b>Shabir Ahmad</b></div><div><span></span>Principal GHSS Pacca Ghalwan<br><b>Zahid Khan Kakar</b></div></div><div class="msg">Software made by: Amanullah Qureshi</div></div>`}
+function pt(){view='rep';R();$('#ty').value='sub';gen2();setTimeout(()=>window.print(),200)}
+let M=ld('man',{}),X=ld('xtra',{});
+const GR={'Primary (Kachi–5th)':['Kachi','1st','2nd','3rd','4th','5th'],'Middle (6th–8th)':['6th','7th A','7th B','8th'],'Secondary (9th–10th)':['9th','10th'],'Higher Secondary':['1st Year','2nd Year']};
+let GRX=ld('grx',{});for(const g in GR)GR[g]=GR[g].filter(x=>D[x]);for(const n in GRX)if(D[n]&&GR[GRX[n]]&&!GR[GRX[n]].includes(n))GR[GRX[n]].push(n);
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;'),op=a=>a.map(x=>`<option>${x}</option>`).join('');
+const tp=t=>{let n=0;for(const c in D)for(let p=0;p<8;p++)if(tn(c,p).includes(t))n++;return n};
+(()=>{const v=ld('th','auto');if(v!='auto')document.documentElement.setAttribute('data-theme',v)})();
+function th(v){sv('th',v);v=='auto'?document.documentElement.removeAttribute('data-theme'):document.documentElement.setAttribute('data-theme',v)}
+function cf(b,f){if(b.dataset.s){f()}else{b.dataset.s=1;b.dataset.o=b.textContent;b.textContent='Tap again to confirm';setTimeout(()=>{b.dataset.s='';b.textContent=b.dataset.o},4000)}}
+function subs(d){const T=TL(),ab=T.filter(t=>st(d,t)!='P'),ldn={},u={},o=[],m=M[d]||{},x=X[d]||[];
+for(const k in m){const p=k.split('|')[1];if(m[k]!='-'){u[p+m[k]]=1;ldn[m[k]]=(ldn[m[k]]||0)+1}}
+x.forEach(e=>{u[e.p+e.sb]=1;ldn[e.sb]=(ldn[e.sb]||0)+1});
+for(let p=0;p<8;p++){const busy=new Set();for(const c in D)tn(c,p).forEach(t=>busy.add(t));
+for(const c in D)tn(c,p).forEach(t=>{if(ab.includes(t)){const k=c+'|'+p+'|'+t;let s='',mn=0;if(m[k]!==undefined){mn=1;s=m[k]=='-'?'':m[k]}else{const f=T.filter(y=>st(d,y)=='P'&&!busy.has(y)&&!u[p+y]&&!NS.includes(y)).sort((a,b)=>(ldn[a]||0)-(ldn[b]||0));s=f[0]||'';if(s){u[p+s]=1;ldn[s]=(ldn[s]||0)+1}}o.push({c,p,sj:D[c][p][0],ab:t,sb:s,k,mn})}})}
+x.forEach((e,i)=>o.push({c:e.c,p:e.p,sj:e.sj,ab:e.why||'Extra duty',sb:e.sb,k:'x'+i,mn:2,xi:i}));
+return o.sort((a,b)=>a.p-b.p)}
+function mx(){const o=document.createElement('div');o.className='ov np';o.innerHTML=`<div class="card"><h3 style="margin:0 0 8px">➕ Add Manual Substitution</h3><div class="bar"><select id="oxc" style="width:100%">${op(Object.keys(D))}</select></div><div class="bar"><select id="oxp" style="width:100%">${PT.map((x,i)=>`<option value="${i}">Period ${i+1} (${x})</option>`).join('')}</select></div><div class="bar"><input id="oxs" placeholder="Subject" style="width:100%"></div><div class="bar"><select id="oxt" style="width:100%"><option value="">Substitute teacher…</option>${op(TL())}</select></div><div class="bar"><input id="oxr" placeholder="Absent teacher / reason (optional)" style="width:100%"></div><div class="bar"><button class="btn g" id="oxk">Save</button><button class="btn" onclick="this.closest('.ov').remove()">Cancel</button></div></div>`;document.body.appendChild(o);const fill=()=>{$('#oxs').value=D[$('#oxc').value][+$('#oxp').value][0]};$('#oxc').onchange=$('#oxp').onchange=fill;fill();$('#oxk').onclick=()=>{const e={c:$('#oxc').value,p:+$('#oxp').value,sj:$('#oxs').value.trim()||'—',sb:$('#oxt').value,why:$('#oxr').value.trim()};if(!e.sb){$('#oxt').focus();return}X[day]=(X[day]||[]).concat(e);sv('xtra',X);o.remove();R()}}
+function setM(k,v){M[day]=M[day]||{};if(v=='')delete M[day][k];else M[day][k]=v;sv('man',M);R()}
+function addX(){const e={c:$('#xc').value,p:+$('#xp').value,sj:$('#xs').value.trim()||'—',sb:$('#xt').value,why:$('#xr').value.trim()};if(!e.sb)return;X[day]=(X[day]||[]).concat(e);sv('xtra',X);R()}
+function delX(i){X[day].splice(i,1);sv('xtra',X);R()}
+function subv2(){const S=subs(day),P=TL().filter(t=>st(day,t)=='P');
+const sl=s=>{const b=new Set();for(const c in D)tn(c,s.p).forEach(t=>b.add(t));const u=new Set(S.filter(z=>z.p==s.p&&z.k!=s.k).map(z=>z.sb)),fr=P.filter(t=>!b.has(t)&&!u.has(t)),ot=P.filter(t=>!fr.includes(t)),sel=t=>s.mn==1&&s.sb==t?'selected':'';
+return`<option value="">Auto</option><option value="-" ${M[day]&&M[day][s.k]=='-'?'selected':''}>Leave uncovered</option><optgroup label="Free teachers">${fr.map(t=>`<option ${sel(t)}>${t}</option>`).join('')}</optgroup><optgroup label="Busy – double duty">${ot.map(t=>`<option ${sel(t)}>${t}</option>`).join('')}</optgroup>`};
+return`<div class="bar"><button class="btn g" onclick="mx()">➕ Add Manual Substitution</button><button class="btn r" onclick="pt()">🖨 Print</button><button class="btn" onclick="cf(this,()=>{delete M[day];delete X[day];sv('man',M);sv('xtra',X);R()})">Reset all manual changes</button></div><div class="w"><table><tr><th>Period</th><th>Class</th><th>Subject</th><th>Absent / reason</th><th>Substitute</th><th>Change</th></tr>${S.map(s=>`<tr><td>P${s.p+1}<br><small>${PT[s.p]}</small></td><td>${s.c}</td><td>${s.sj}</td><td>${s.ab}</td><td style="color:var(--${s.sb?'g':'r'});font-weight:700">${s.sb||'⚠ none free'}${s.mn?' ✎':''}</td><td>${s.mn==2?`<button class="btn r" onclick="delX(${s.xi})">Delete</button>`:`<select onchange="setM('${s.k}',this.value)">${sl(s)}</select>`}</td></tr>`).join('')||'<tr><td colspan="6">No substitutions needed.</td></tr>'}</table></div><p style="color:var(--m)">✎ = manual choice. Pick “Auto” to let the software choose again.</p>
+<div class="card" style="margin-top:12px"><b style="font-size:16px">➕ Manual entry (extra duty)</b><div class="bar"><select id="xc">${op(Object.keys(D))}</select><select id="xp">${PT.map((x,i)=>`<option value="${i}">P${i+1} ${x}</option>`).join('')}</select><input id="xs" placeholder="Subject"><select id="xt">${op(P)}</select><input id="xr" placeholder="Reason (optional)"><button class="btn g" onclick="addX()">Add</button></div></div>`}
+const attv2=()=>attv()+`<div class="card" style="margin-top:12px"><b style="font-size:16px">📝 Leave / absence for a date range</b><div class="bar"><select id="lt">${op(TL())}</select><select id="ls"><option value="L">Leave</option><option value="A">Absent</option></select><label>From <input type="date" id="lf" value="${day}"></label><label>To <input type="date" id="lo" value="${day}"></label><button class="btn o" onclick="applyL()">Apply</button></div></div>`;
+function applyL(){const t=$('#lt').value,s=$('#ls').value;dts($('#lf').value,$('#lo').value).forEach(d=>{A[d]=A[d]||{};A[d][t]=s});sv('att',A);R()}
+function ed(c,p){const o=document.createElement('div');o.className='ov np';o.innerHTML=`<div class="card"><h3 style="margin:0 0 8px">${c} – P${p+1}</h3><div class="bar"><input id="es" value="${D[c][p][0]}" placeholder="Subject" style="width:100%"></div><div class="bar"><input id="et" value="${D[c][p][1]}" placeholder="Teachers, comma separated (blank = free)" style="width:100%"></div><div class="bar"><button class="btn p" id="eok">Save</button><button class="btn" onclick="this.closest('.ov').remove()">Cancel</button></div></div>`;document.body.appendChild(o);$('#eok').onclick=()=>{D[c][p]=[$('#es').value.trim(),$('#et').value.trim()];sv('tt',D);o.remove();R()}}
+function setv(){const t=ld('th','auto');return`<div class="card"><b style="font-size:16px">🎨 Theme</b><div class="bar">${['auto','light','dark'].map(v=>`<button class="btn ${t==v?'p':''}" onclick="th('${v}');R()">${v[0].toUpperCase()+v.slice(1)}</button>`).join('')}</div></div>
+${mgv()}<div class="card" style="margin-top:10px"><b style="font-size:16px">🪪 Teacher full names</b><p style="color:var(--m)">Type the full name of each teacher, then press Save. It changes everywhere (timetable, attendance, substitutions, reports).</p>${TL().map(t=>`<div class="bar"><span style="min-width:110px;color:var(--m)">${t}</span><input class="fni" data-o="${t}" value="${t}" style="flex:1;min-width:160px"></div>`).join('')}<button class="btn g" onclick="applyFN()">Save names</button></div>
+<div class="card" style="margin-top:10px"><b style="font-size:16px">✏️ Rename teacher</b><div class="bar"><select id="r1">${op(TL())}</select><input id="r2" placeholder="New name"><button class="btn p" onclick="renT()">Rename</button></div></div>
+<div class="card" style="margin-top:10px"><b style="font-size:16px">💾 Backup / Restore</b><p style="color:var(--m)">Copy this text to move your data to another device, then paste it there and press Restore.</p><textarea id="bk" rows="5" style="width:100%" onclick="this.select()">${esc(JSON.stringify({D,A,M,X,W}))}</textarea><div class="bar"><button class="btn g" onclick="rest()">Restore from text</button><span id="bm"></span></div></div>
+<div class="card" style="margin-top:10px"><b style="font-size:16px">⚠ Reset</b><div class="bar"><button class="btn r" onclick="cf(this,()=>{D=JSON.parse(JSON.stringify(D0));sv('tt',D);R()})">Reset timetable</button><button class="btn r" onclick="cf(this,()=>{A={};M={};X={};sv('att',A);sv('man',M);sv('xtra',X);R()})">Clear attendance & substitutions</button></div></div>`}
+function rest(){try{const o=JSON.parse($('#bk').value);D=o.D;A=o.A;M=o.M||{};X=o.X||{};if(o.W){W=Object.assign({},WD0,o.W);wsave()}sv('tt',D);sv('att',A);sv('man',M);sv('xtra',X);R()}catch(e){$('#bm').textContent='Invalid backup text'}}
+function ren(a,b){TX=TX.map(n=>n==a?b:n);sv('tex',TX);for(const c in D)D[c].forEach(x=>{x[1]=x[1].split(',').map(n=>n.trim()==a?b:n.trim()).join(',')});for(const d in A)if(A[d][a]){A[d][b]=A[d][a];delete A[d][a]}for(const d in M)Object.keys(M[d]).forEach(k=>{let v=M[d][k],n=k.split('|');if(n[2]==a)n[2]=b;if(v==a)v=b;delete M[d][k];M[d][n.join('|')]=v});for(const d in X)X[d].forEach(e=>{if(e.sb==a)e.sb=b});sv('tt',D);sv('att',A);sv('man',M);sv('xtra',X)}
+function applyFN(){document.querySelectorAll('.fni').forEach(i=>{const o=i.dataset.o,n=i.value.trim();if(n&&n!=o)ren(o,n)});R()}
+const FNM={'G.Rasool':'Ghulam Rasool','Miss Saira':'Saira Bibi','Shabir':'Shabir Ahmad','Amanullah':'Amanullah Qureshi'};
+if(!ld('fnv1',0)){for(const a in FNM)ren(a,FNM[a]);sv('fnv1',1)}
+function renT(){const a=$('#r1').value,b=$('#r2').value.trim();if(!b)return;for(const c in D)D[c].forEach(x=>{x[1]=x[1].split(',').map(n=>n.trim()==a?b:n.trim()).join(',')});for(const d in A)if(A[d][a]){A[d][b]=A[d][a];delete A[d][a]}for(const d in M)Object.keys(M[d]).forEach(k=>{let v=M[d][k],n=k.split('|');if(n[2]==a)n[2]=b;if(v==a)v=b;delete M[d][k];M[d][n.join('|')]=v});for(const d in X)X[d].forEach(e=>{if(e.sb==a)e.sb=b});sv('tt',D);sv('att',A);sv('man',M);sv('xtra',X);R()}
+function repv2(){const SJ=[...new Set(Object.values(D).flatMap(r=>r.map(x=>x[0])).filter(Boolean))].sort(),TT=TL();
+return`<div class="card np"><div class="bar"><select id="ty"><option value="att">Attendance summary</option><option value="reg">Attendance register (date-wise)</option><option value="abs">Absentee / leave list</option><option value="sub">Substitution report</option><option value="load">Substitution load per teacher</option><option value="fre">Free periods of teachers</option><option value="dtt">Daily timetable with substitutions</option><option value="ttT">Teacher timetable</option><option value="ttC">Class timetable</option></select><label>From <input type="date" id="f" value="${day}"></label><label>To <input type="date" id="to" value="${day}"></label></div>
+<div class="bar"><select id="te"><option value="">All teachers</option>${op(TT)}</select><select id="sbf"><option value="">Any substitute</option>${op(TT)}</select><select id="cl"><option value="">All classes</option>${op(Object.keys(D))}</select><select id="sec"><option value="">All sections</option>${op(Object.keys(GR))}</select></div>
+<div class="bar"><select id="stf"><option value="">All status</option><option value="A">Absent</option><option value="L">Leave</option></select><select id="pe"><option value="">All periods</option>${PT.map((x,i)=>`<option value="${i}">Period ${i+1}</option>`).join('')}</select><select id="sj"><option value="">All subjects</option>${op(SJ)}</select><select id="so"><option value="n">Sort: Name</option><option value="d">Sort: Most absences / load</option></select></div>
+<div class="bar"><button class="btn p" onclick="gen2()">Generate</button><select id="bwm" onchange="setBW(this.value)"><option value="bw" ${ld('bwm','bw')=='bw'?'selected':''}>🖤 Black &amp; White print</option><option value="c" ${ld('bwm','bw')=='c'?'selected':''}>🎨 Colour print</option></select><button class="btn g" onclick="window.print()">🖨 Print A4</button></div></div><div id="out"></div>`}
+function gen2(){gen2b();dec();let s=$('#pgs');if(!s){s=document.createElement('style');s.id='pgs';document.head.appendChild(s)}s.textContent='@media print{@page{size:A4 '+(['reg','dtt','ttT','ttC'].includes($('#ty').value)?'landscape':'portrait')+';margin:10mm}}'}
+function dec(){const BW=document.body.classList.contains('bw'),o=$('#out');if(!o||!o.firstChild)return;const ic={'Teacher Attendance Summary':'📊','Attendance Register':'📅','Absentee / Leave List':'🚫','Substitution Report':'🔁','Substitution Load per Teacher':'⚖️','Free Periods of Teachers':'🕐','Daily Timetable with Substitutions':'📋','Teacher-wise Timetable':'👨‍🏫','Class-wise Timetable':'🏫'};
+const h3=o.querySelector('h3'),h2=o.querySelector('h2');if(!BW){if(h3)h3.textContent=(ic[h3.textContent]||'📄')+' '+h3.textContent;if(h2)h2.textContent='🏫 '+h2.textContent}
+const M2={P:'bg',A:'br',L:'bo',Present:'bg',Absent:'br',Leave:'bo',Auto:'bb',Manual:'bv',Extra:'bo'};let cP=0,cA=0,cL=0;
+o.querySelectorAll('.sheet td').forEach(td=>{const t=td.textContent.trim();if(M2[t]){if(td.closest('table.sm')){t=='P'?cP++:t=='A'?cA++:t=='L'&&cL++}td.innerHTML=`<span class="bd ${M2[t]}">${t}</span>`}else if(t.startsWith('⚠')){td.innerHTML=`<span class="bd br">${BW?t.replace(/⚠\s*/,''):t}</span>`}else if(/^\d+%$/.test(t)){const v=+t.slice(0,-1);td.innerHTML=t+`<span class="pc" style="width:${v*.5}px;background:${v>=90?'#16a34a':v>=75?'#d97706':'#dc2626'}"></span>`}});
+const tb=o.querySelector('.sheet table'),hs=tb?[...tb.rows[0].cells].map(c=>c.textContent):[],sum=n=>{const i=hs.indexOf(n);return i<0?null:[...tb.rows].slice(1).reduce((a,r)=>a+(+r.cells[i].textContent||0),0)};
+let ch=`<span class="chip bb">📄 Records: ${tb?tb.rows.length-1:0}</span>`;const P=sum('Present')??(cP||null),A=sum('Absent')??(cA||null),L=sum('Leave')??(cL||null),C=sum('Periods covered'),Ms=sum('Periods missed');
+if(P!=null)ch+=`<span class="chip bg">✅ Present: ${P}</span>`;if(A!=null)ch+=`<span class="chip br">❌ Absent: ${A}</span>`;if(L!=null)ch+=`<span class="chip bo">🌴 Leave: ${L}</span>`;if(Ms!=null)ch+=`<span class="chip br">❌ Periods missed: ${Ms}</span>`;if(C!=null)ch+=`<span class="chip bg">🔁 Periods covered: ${C}</span>`;
+if(BW)ch=ch.replace(/[✅❌🌴🔁📄]\uFE0F?\s?/gu,'');o.querySelector('.hd').insertAdjacentHTML('afterend',`<div class="chips">${ch}</div>`)}
+function gen2b(){const g=i=>$('#'+i).value,ty=g('ty'),f=g('f'),t2=g('to'),te=g('te'),sbf=g('sbf'),cl=g('cl'),sec=g('sec'),stf=g('stf'),pe=g('pe'),sj=g('sj'),so=g('so'),ds=ty=='dtt'?[f]:dts(f,t2),T=TL().filter(t=>!te||t==te),C=Object.keys(D).filter(c=>(!cl||c==cl)&&(!sec||GR[sec].includes(c))),PS=pe===''?[0,1,2,3,4,5,6,7]:[+pe],ph=PS.map(p=>'P'+(p+1)+'<br>'+PT[p]);
+const cnt=t=>{const k={P:0,A:0,L:0};ds.forEach(d=>k[st(d,t)]++);return k},tb=(hd,rows)=>`<table><tr>${hd.map(x=>`<th>${x}</th>`).join('')}</tr>${rows.map(r=>`<tr>${r.map(x=>`<td>${x}</td>`).join('')}</tr>`).join('')||`<tr><td colspan="${hd.length}">No records found.</td></tr>`}</table>`;
+let ti,h='',sm='',r;
+if(ty=='att'){ti='Teacher Attendance Summary';r=T.map(t=>[t,cnt(t)]).filter(([t,k])=>!stf||k[stf]>0);if(so=='d')r.sort((a,b)=>b[1].A+b[1].L-a[1].A-a[1].L);h=tb(['#','Teacher','Present','Absent','Leave','Days','%'],r.map(([t,k],i)=>[i+1,t,k.P,k.A,k.L,ds.length,ds.length?Math.round(k.P*100/ds.length)+'%':'-']))}
+else if(ty=='reg'){ti='Attendance Register';if(ds.length>31)h='<p>Please select 31 days or fewer for the register.</p>';else{sm='sm';r=T.filter(t=>!stf||ds.some(d=>st(d,t)==stf));h=`<table class="sm"><tr><th>Teacher</th>${ds.map(d=>`<th>${d.slice(8)}</th>`).join('')}<th>A</th><th>L</th></tr>${r.map(t=>{const k=cnt(t);return`<tr><td>${t}</td>${ds.map(d=>{const s=st(d,t);return`<td style="text-align:center${s!='P'?';font-weight:700':''}">${s}</td>`}).join('')}<td>${k.A}</td><td>${k.L}</td></tr>`}).join('')}</table>`}}
+else if(ty=='abs'){ti='Absentee / Leave List';r=[];ds.forEach(d=>T.forEach(t=>{const s=st(d,t);if(s!='P'&&(!stf||s==stf))r.push([d,t,SN[s],tp(t)])}));h=tb(['Date','Teacher','Status','Periods in timetable'],r)}
+else if(ty=='sub'){ti='Substitution Report';r=[];ds.forEach(d=>subs(d).filter(s=>(!te||s.ab==te)&&(!sbf||s.sb==sbf)&&(!cl||s.c==cl)&&(!sec||GR[sec].includes(s.c))&&(pe===''||s.p==pe)&&(!sj||s.sj==sj)&&(!stf||st(d,s.ab)==stf)).forEach(s=>r.push([d,'P'+(s.p+1)+' '+PT[s.p],s.c,s.sj,s.ab,s.sb||'⚠ none'])));h=tb(['Date','Period','Class','Subject','Absent / reason','Substitute'],r);h=subx(h,r,ds,f,t2)}
+else if(ty=='load'){ti='Substitution Load per Teacher';const cv={},ls={};ds.forEach(d=>subs(d).forEach(s=>{if(s.sb)cv[s.sb]=(cv[s.sb]||0)+1;if(s.mn!=2)ls[s.ab]=(ls[s.ab]||0)+1}));r=T.map(t=>[t,tp(t),ls[t]||0,cv[t]||0]);if(so=='d')r.sort((a,b)=>b[3]-a[3]);h=tb(['Teacher','Periods / day','Periods missed','Periods covered'],r)}
+else if(ty=='fre'){ti='Free Periods of Teachers';r=T.map(t=>{const fp=PS.filter(p=>!Object.keys(D).some(c=>tn(c,p).includes(t)));return[t,tp(t),fp.map(p=>'P'+(p+1)).join(', ')||'—',fp.length]}).filter(x=>pe===''||x[3]);if(so=='d')r.sort((a,b)=>b[3]-a[3]);h=tb(['Teacher','Teaching periods','Free periods','Free count'],r)}
+else if(ty=='dtt'){ti='Daily Timetable with Substitutions';const S=subs(f);h=tb(['Class',...ph],C.map(c=>[c,...PS.map(p=>{const x=D[c][p];if(!x[0]||(sj&&x[0]!=sj))return'—';const tt=tn(c,p).map(t=>{const s=S.find(z=>z.c==c&&z.p==p&&z.ab==t);return s?`<s>${t}</s> → <b>${s.sb||'?'}</b>`:t});if(te&&!tn(c,p).includes(te)&&!S.some(z=>z.c==c&&z.p==p&&z.sb==te))return'—';return x[0]+'<br>'+tt.join(', ')})]))+(S.some(s=>s.mn==2)?'<p><b>Extra duties:</b> '+S.filter(s=>s.mn==2).map(s=>`P${s.p+1} ${s.c} ${s.sj}: ${s.sb}`).join(' • ')+'</p>':'')}
+else if(ty=='ttT'){ti='Teacher-wise Timetable';r=T.map(t=>[t,...PS.map(p=>C.filter(c=>tn(c,p).includes(t)&&(!sj||D[c][p][0]==sj)).map(c=>c+' '+D[c][p][0]).join('; ')||'—')]);if(cl||sec||sj)r=r.filter(x=>x.slice(1).some(y=>y!='—'));h=tb(['Teacher',...ph],r)}
+else{ti='Class-wise Timetable';h=tb(['Class',...ph],C.map(c=>[c,...PS.map(p=>{const x=D[c][p];return!x[0]||(sj&&x[0]!=sj)||(te&&!tn(c,p).includes(te))?'—':x[0]+'<br>'+x[1]})]))}
+const fl=[te&&'Teacher: '+te,sbf&&'Substitute: '+sbf,cl&&'Class: '+cl,sec,stf&&SN[stf],pe!==''&&'Period '+(+pe+1),sj&&'Subject: '+sj].filter(Boolean).join(' • '),dl=(ty.startsWith('tt')||ty=='fre')?'Weekly Schedule':ty=='dtt'||f==t2?f:f+' to '+t2;
+$('#out').innerHTML=`<div class="sheet ${sm}"><div class="hd"><h2>GOVT. HIGHER SECONDARY SCHOOL PACCA GHALWAN (M.GARH)</h2><div>School Code: 32330052</div><h3>${ti}</h3><div>${dl}${fl?'<br>'+fl:''}</div></div>${h}<div class="sig"><div><span></span>Timetable Expert<br><b>Shabir Ahmad</b></div><div><span></span>Principal GHSS Pacca Ghalwan<br><b>Zahid Khan Kakar</b></div></div><div class="msg">Software made by: Amanullah Qureshi</div></div>`}
+if(ld('bwm','bw')=='bw')document.body.classList.add('bw');
+function setBW(v){sv('bwm',v);document.body.classList.toggle('bw',v=='bw');const o=$('#out');if(o&&o.firstChild)gen2()}
+const cfl=(c,p)=>tn(c,p).some(t=>Object.keys(D).some(k=>k!=c&&tn(k,p).includes(t)));
+function ptt(t){view='rep';R();$('#ty').value=t;if(t=='ttC')$('#cl').value=tcl||'';gen2();setTimeout(()=>window.print(),200)}
+const cl2=s=>s.replace(/['"<>|,]/g,'').trim();
+function sv2(){sv('tt',D);sv('tex',TX);sv('grx',GRX);sv('att',A);sv('man',M);sv('xtra',X)}
+function ed(c,p){const sjs=[...new Set(Object.values(D).flatMap(r=>r.map(x=>x[0])).filter(Boolean))].sort(),o=document.createElement('div');o.className='ov np';
+o.innerHTML=`<div class="card" style="max-height:90vh;overflow:auto"><h3 style="margin:0 0 8px">${c} – P${p+1} <small>${PT[p]}</small></h3><label>Subject<input id="es" list="sjl" value="${D[c][p][0]}" placeholder="Type subject" style="width:100%"></label><datalist id="sjl">${sjs.map(x=>`<option>${x}</option>`).join('')}</datalist><label style="display:block;margin-top:8px">Teacher name<input id="et" value="${D[c][p][1]}" placeholder="Type teacher name (2 teachers: separate with comma)" style="width:100%"></label><p style="color:var(--m);font-size:12px;margin:6px 0">Leave teacher blank for a free period. A new name is added as a new teacher automatically.</p><div class="bar"><button class="btn p" id="eok">Save</button><button class="btn" onclick="this.closest('.ov').remove()">Cancel</button></div></div>`;document.body.appendChild(o);
+$('#eok').onclick=()=>{const ts=$('#et').value.split(',').map(x=>cl2(x)).filter(Boolean),cf2=ts.filter(t=>Object.keys(D).some(k=>k!=c&&tn(k,p).includes(t)));if(cf2.length&&!confirm(cf2.join(', ')+' already teach(es) another class in this period. Save anyway?'))return;D[c][p]=[$('#es').value.trim(),ts.join(',')];sv('tt',D);o.remove();R()}}
+function addT(){const n=cl2($('#nt').value);if(!n||TL().includes(n))return;TX.push(n);sv('tex',TX);R()}
+function delT(t){for(const c in D)D[c].forEach(x=>{x[1]=x[1].split(',').map(n=>n.trim()).filter(n=>n&&n!=t).join(',')});TX=TX.filter(n=>n!=t);for(const d in A)delete A[d][t];for(const d in M)Object.keys(M[d]).forEach(k=>{if(k.split('|')[2]==t||M[d][k]==t)delete M[d][k]});for(const d in X)X[d]=X[d].filter(e=>e.sb!=t);sv2();R()}
+function renT(){const a=$('#r1').value,b=cl2($('#r2').value);if(!b||a==b)return;ren(a,b);R()}
+function addC(){const n=cl2($('#nc').value),g=$('#ng').value;if(!n||D[n])return;D[n]=Array.from({length:8},()=>['','']);GRX[n]=g;GR[g].push(n);sv2();R()}
+function renC(){const a=$('#cr1').value,b=cl2($('#cr2').value);if(!b||D[b])return;const N={};for(const k in D)N[k==a?b:k]=D[k];D=N;for(const g in GR)if(GR[g].includes(a)){GRX[b]=g;GR[g]=GR[g].map(x=>x==a?b:x)}delete GRX[a];for(const d in M)Object.keys(M[d]).forEach(k=>{const n=k.split('|');if(n[0]==a){n[0]=b;M[d][n.join('|')]=M[d][k];delete M[d][k]}});for(const d in X)X[d].forEach(e=>{if(e.c==a)e.c=b});sv2();R()}
+function delC(){const a=$('#cr1').value;if(Object.keys(D).length<2)return;delete D[a];for(const g in GR)GR[g]=GR[g].filter(x=>x!=a);delete GRX[a];for(const d in X)X[d]=X[d].filter(e=>e.c!=a);for(const d in M)Object.keys(M[d]).forEach(k=>{if(k.split('|')[0]==a)delete M[d][k]});sv2();R()}
+function savePT(){PT=[...document.querySelectorAll('.pti')].map((i,k)=>i.value.trim()||PT[k]);sv('pt',PT);R()}
+function mgv(){const T=TL();return`<div class="card" style="margin-top:10px"><b style="font-size:16px">👩‍🏫 Add / delete teachers</b><div class="bar"><input id="nt" placeholder="New teacher full name" style="flex:1"><button class="btn g" onclick="addT()">Add teacher</button></div><p style="color:var(--m);margin:4px 0 8px">After adding, open Timetable, tap a cell and tick the teacher. A teacher with free periods is used automatically as a substitute.</p>${T.map((t,i)=>`<div class="bar"><span style="flex:1">${t} <small style="color:var(--m)">(${tp(t)} periods/day)</small></span><button class="btn r" onclick="cf(this,()=>delT(TL()[${i}]))">Delete</button></div>`).join('')}</div>
+<div class="card" style="margin-top:10px"><b style="font-size:16px">🏫 Classes</b><div class="bar"><input id="nc" placeholder="New class name"><select id="ng">${op(Object.keys(GR))}</select><button class="btn g" onclick="addC()">Add class</button></div><div class="bar"><select id="cr1">${op(Object.keys(D))}</select><input id="cr2" placeholder="New name"><button class="btn p" onclick="renC()">Rename</button><button class="btn r" onclick="cf(this,delC)">Delete class</button></div></div>
+<div class="card" style="margin-top:10px"><b style="font-size:16px">⏰ Period timings</b><div class="bar">${PT.map((x,i)=>`<label>P${i+1} <input class="pti" value="${x}" style="width:110px"></label>`).join('')}</div><button class="btn g" onclick="savePT()">Save timings</button></div>`}
+function subx(h,r,ds,f,t2){const L=TL().filter(t=>ds.some(d=>st(d,t)!='P')),when=f==t2?'today':'during '+f+' to '+t2,
+st1=L.length?`<p style="text-align:justify;line-height:1.6;margin:12px 0;font-size:14px">The following teachers <b>(${L.join(', ')})</b> ${L.length>1?'are':'is'} on leave ${when}, and their substitute periods have been assigned by order of the Principal. All concerned teachers are directed to take their assigned lectures on time, ensure effective teaching, and maintain discipline among students as per the given schedule.</p>`:'',
+m={};r.forEach(x=>{if(x[5]&&x[5].indexOf('⚠')<0)(m[x[5]]=m[x[5]]||[]).push((f==t2?'':x[0].slice(5)+' ')+x[1].split(' ')[0]+' ('+x[2]+')')});
+const rows=Object.keys(m).sort().map((n,i)=>`<tr style="page-break-inside:avoid"><td style="height:34px">${i+1}</td><td><b>${n}</b></td><td>${m[n].join(', ')}</td><td style="width:32%"></td></tr>`).join('');
+const t=rows?`<h4 style="margin:18px 0 6px;text-align:center">Substitute Teachers – Signature</h4><table style="page-break-inside:avoid"><tr><th style="width:28px">#</th><th>Substitute teacher</th><th>Period(s) assigned</th><th>Signature</th></tr>${rows}</table>`:'';
+return st1+h+t}
+/* ===================== WELCOME DUTY ===================== */
+const WD0={per:2,sat:1,sun:1,from:'',ahead:30,hol:{},ex:[],order:[],lv:{},princ:'Zahid Khan Kakar',time:'8:30 AM',mode:'group',num:'',grp:'',auto:1,rt:'14:00',sent:{}};
+let W=Object.assign({},WD0,ld('wd',{})),wpast=0,wpvd='';
+const wsave=()=>sv('wd',W),wtd=()=>new Date(Date.now()-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,10),
+wadd=(d,n)=>{const x=new Date(d+'T00:00:00Z');x.setUTCDate(x.getUTCDate()+n);return x.toISOString().slice(0,10)},
+WDN=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],WMN=['January','February','March','April','May','June','July','August','September','October','November','December'],
+wdow=d=>new Date(d+'T00:00:00Z').getUTCDay(),
+wdl=d=>{const x=d.split('-');return WDN[wdow(d)]+', '+x[2]+' '+WMN[+x[1]-1]+' '+x[0]},
+wds=d=>{const x=d.split('-');return x[2]+'-'+WMN[+x[1]-1].slice(0,3)+'-'+x[0]};
+if(!W.from){W.from=wtd();wsave()}
+const wwork=d=>{const w=wdow(d);return!((w==6&&W.sat)||(w==0&&W.sun)||W.hol[d])};
+const wavail=(t,d)=>st(d,t)=='P'&&!(W.lv[d]&&W.lv[d][t]);
+const wwhy=(t,d)=>(W.lv[d]&&W.lv[d][t])?'on leave (marked for duty)':st(d,t)=='A'?'absent':'on leave';
+function word(){const T=TL(),o=W.order.filter(t=>T.includes(t));T.forEach(t=>{if(!o.includes(t))o.push(t)});return o}
+const wel=()=>word().filter(t=>!W.ex.includes(t));
+/* Rotation engine: teachers take duty in order. If the next teacher is absent/on leave, the following teacher is used and the
+   missed teacher goes into a make-up queue; on the first day he is present he is given a duty (counted as made up). */
+function wsim(end){const O=wel(),k=Math.max(1,W.per|0),td=wtd(),res={},S={};O.forEach(t=>S[t]={done:0,upc:0,miss:0,made:0});let Q=[],qs=[],p=0;
+if(!O.length)return{res,S,qs};
+for(let d=W.from;d<=end;d=wadd(d,1)){if(!wwork(d))continue;const pick=[],mk=[],sk=[];
+for(let i=0;i<Q.length&&pick.length<k;){const t=Q[i];if(wavail(t,d)){pick.push(t);mk.push(t);Q.splice(i,1);if(d<=td)S[t].made++}else i++}
+for(let n=0;n<O.length&&pick.length<k;n++){const t=O[p%O.length];p++;if(pick.includes(t))continue;
+if(wavail(t,d))pick.push(t);else{sk.push([t,wwhy(t,d)]);if(!Q.includes(t))Q.push(t);if(d<=td)S[t].miss++}}
+pick.forEach(t=>{if(d<=td)S[t].done++;else S[t].upc++});res[d]={t:pick,mk,sk};if(d<=td)qs=Q.slice()}
+return{res,S,qs}}
+function wtoast(m){let e=$('#wtoast');if(!e){e=document.createElement('div');e.id='wtoast';e.className='np';document.body.appendChild(e)}e.textContent=m;e.style.display='block';clearTimeout(wtoast.t);wtoast.t=setTimeout(()=>e.style.display='none',5000)}
+const wnames=d=>{const r=wsim(d).res[d];return r?r.t:[]};
+function wmsg(d){const n=wnames(d),c=n.length;if(!c)return'';const nm=c>1?n.slice(0,-1).join(', ')+' and '+n[c-1]:n[0],nw=['','one','two','three','four','five','six'][c]||c;
+return'The following '+(c>1?nw+' teachers':'teacher')+' ('+nm+') '+(c>1?'are':'is')+' hereby assigned the duty of welcoming students at the school entrance gate on the morning of '+wdl(d)+' at '+W.time+'. '+(c>1?'They are':'The teacher is')+' directed to ensure a warm, disciplined, and respectful welcome for all students.\n\nPrincipal GHSS Pacca Ghalwan: '+W.princ+'\n\nSoftware by: IT Expert Amanullah Qureshi'}
+function wsend(d){const m=wmsg(d);if(!m)return;const dg=(W.num||'').replace(/\D/g,''),u=W.mode=='num'&&dg?'https://wa.me/'+dg+'?text='+encodeURIComponent(m):'https://api.whatsapp.com/send?text='+encodeURIComponent(m);
+W.sent[d]=wnames(d).join('|');wsave();const w=window.open(u,'_blank');if(!w)location.href=u;if(W.mode!='num'||!dg)wtoast('In WhatsApp choose the group'+(W.grp?': '+W.grp:''));R()}
+function wcopy(d){const m=wmsg(d);if(!m)return;const ok=()=>wtoast('Message copied');if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(m).then(ok,()=>wfc(m,ok));else wfc(m,ok)}
+function wfc(m,ok){const t=document.createElement('textarea');t.value=m;document.body.appendChild(t);t.select();try{document.execCommand('copy');ok()}catch(e){}t.remove()}
+function wsk(d){W.sent[d]=wnames(d).join('|');wsave();R()}
+function wbn(){let el=$('#wbn');if(!el){el=document.createElement('div');el.id='wbn';el.className='np';$('main').prepend(el)}
+let h='';if(W.auto){const n=new Date(),td=wtd(),tm=wadd(td,1),hm=('0'+n.getHours()).slice(-2)+':'+('0'+n.getMinutes()).slice(-2),r=wsim(tm).res;
+[[td,0],[tm,1]].forEach(([d,f])=>{if(!wwork(d))return;const x=r[d];if(!x||!x.t.length)return;if(f&&hm<W.rt)return;const key=x.t.join('|'),sd=W.sent[d];if(sd==key)return;
+h+=`<div class="wb"><div>📣 Welcome-duty message ${d==td?'for TODAY':'for TOMORROW'} (${wds(d)}): ${esc(x.t.join(' & '))}${sd?' – duty changed since last message':''}</div><div><button class="btn" onclick="wsend('${d}')">Send on WhatsApp</button> <button class="btn" onclick="wsk('${d}')">Dismiss</button></div></div>`})}
+el.innerHTML=h}
+setInterval(wbn,30000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)wbn()});
+function wset(k,v){if(k=='from'&&!v)return;W[k]=v;wsave();R()}
+function wlv(d,i){const r0=wsim(d).res[d];if(!r0)return;const t=r0.t[i];if(!t)return;W.lv[d]=W.lv[d]||{};W.lv[d][t]=1;wsave();const r1=wsim(d).res[d],nw=r1?r1.t.filter(x=>!r0.t.includes(x)):[];R();wtoast(t+' is on leave for '+wds(d)+'. Duty given to '+(nw.join(', ')||'nobody available')+'. '+t+' will get a make-up duty when present.')}
+function wulv(d,i){const k=Object.keys(W.lv[d]||{})[i];if(!k)return;delete W.lv[d][k];if(!Object.keys(W.lv[d]).length)delete W.lv[d];wsave();R()}
+function whol(d){const r=prompt('Holiday reason (e.g. Eid, Rain, Summer vacation):','Holiday');if(r===null)return;W.hol[d]=r.trim()||'Holiday';wsave();R()}
+function wrh(d){delete W.hol[d];wsave();R()}
+function wah(){const a=$('#hf').value,b=$('#ht').value||a,r=($('#hr').value||'').trim()||'Holiday';if(!a||b<a){wtoast('Choose the holiday date(s)');return}for(let d=a,n=0;d<=b&&n<400;d=wadd(d,1),n++)W.hol[d]=r;wsave();R()}
+function wex(i){const t=word()[i];W.ex=W.ex.includes(t)?W.ex.filter(x=>x!=t):W.ex.concat(t);wsave();R()}
+function wmv(i,x){const o=word(),j=i+x;if(j<0||j>=o.length)return;[o[i],o[j]]=[o[j],o[i]];W.order=o;wsave();R()}
+function wprint(){document.body.classList.add('pw');const off=()=>document.body.classList.remove('pw');window.addEventListener('afterprint',off,{once:true});setTimeout(()=>window.print(),100);setTimeout(off,60000)}
+function wics(){const td=wtd(),end=wadd(td,Math.max(7,+W.ahead||30)),r=wsim(end).res,pad=n=>('0'+n).slice(-2),e=s=>s.replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/\n/g,'\\n'),z=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',tm=(W.rt||'14:00').split(':');
+const o=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//GHSS Pacca Ghalwan//Welcome Duty//EN'];let n=0;
+for(const d in r){if(d<td||!r[d].t.length)continue;const b=wadd(d,-1).replace(/-/g,''),s=b+'T'+pad(tm[0])+pad(tm[1])+'00',en=b+'T'+pad(tm[0])+pad(+tm[1]+15>59?59:+tm[1]+15)+'00';n++;
+o.push('BEGIN:VEVENT','UID:wd'+d+'@ghss',  'DTSTAMP:'+z,'DTSTART:'+s,'DTEND:'+en,'SUMMARY:'+e('Send Welcome Duty message – '+r[d].t.join(' & ')),'DESCRIPTION:'+e(wmsg(d)),'BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:Send Welcome Duty message','TRIGGER:PT0M','END:VALARM','END:VEVENT')}
+o.push('END:VCALENDAR');const u=URL.createObjectURL(new Blob([o.join('\r\n')],{type:'text/calendar'})),a=document.createElement('a');a.href=u;a.download='Welcome_Duty_Reminders.ics';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),30000);wtoast(n+' reminders prepared – open the downloaded file to add them to your calendar')}
+function wdv(){const td=wtd(),tm=wadd(td,1),end=wadd(td,Math.max(7,+W.ahead||30)),sm=wsim(end),res=sm.res,O=word();let rows='',ros='',pv=wpvd;
+if(!pv){for(let d=tm;d<=end;d=wadd(d,1))if(res[d]&&res[d].t.length){pv=d;break}}
+for(let d=wpast?W.from:td;d<=end;d=wadd(d,1)){const dn=WDN[wdow(d)],tg=d==td?' <span class="wt td">TODAY</span>':d==tm?' <span class="wt tm">TOMORROW</span>':'';
+if(!wwork(d)){if(W.hol[d]){rows+=`<tr class="wh"><td>${wds(d)}${tg}</td><td>${dn}</td><td colspan="2">🏖 <b>Holiday</b> – ${esc(W.hol[d])}</td><td><button class="btn" onclick="wrh('${d}')">Remove holiday</button></td></tr>`;if(d>=td)ros+=`<tr><td>${wds(d)}</td><td>${dn}</td><td>Holiday – ${esc(W.hol[d])}</td><td></td></tr>`}continue}
+const r=res[d]||{t:[],mk:[],sk:[]},fut=d>=td,lvk=Object.keys(W.lv[d]||{});
+const tl=r.t.length?r.t.map((t,i)=>`<div class="wl"><b>${esc(t)}</b>${r.mk.includes(t)?' <span class="wt mk">make-up duty</span>':''}${fut?` <button class="btn o" onclick="wlv('${d}',${i})">Leave</button>`:''}</div>`).join(''):'<span style="color:var(--r)">No teacher available</span>';
+let nt=r.sk.map(([t,w])=>{const li=lvk.indexOf(t);return`<div class="wn">⛔ ${esc(t)} – ${w}; duty moved to the next teacher${li>=0&&fut?` <button class="btn" onclick="wulv('${d}',${li})">Undo leave</button>`:''}</div>`}).join('');
+lvk.forEach((t,li)=>{if(!r.sk.some(x=>x[0]==t)&&fut)nt+=`<div class="wn">⛔ ${esc(t)} – leave marked <button class="btn" onclick="wulv('${d}',${li})">Undo leave</button></div>`});
+const key=r.t.join('|'),sd=W.sent[d],ss=sd?(sd==key?'<div class="wn" style="color:var(--g)">✔ message sent</div>':'<div class="wn">⚠ duty changed after message – send again</div>'):'';
+rows+=`<tr class="${d==td?'wtd':''}"><td>${wds(d)}${tg}</td><td>${dn}</td><td>${tl}${nt}</td><td>${fut&&r.t.length?`<button class="btn g" onclick="wsend('${d}')">✉ WhatsApp</button>${ss}`:''}</td><td>${fut?`<button class="btn" onclick="whol('${d}')">🏖 Holiday</button>`:''}</td></tr>`;
+if(d>=td)ros+=`<tr><td>${wds(d)}</td><td>${dn}</td><td>${r.t.map(esc).join(' &amp; ')||'—'}</td><td></td></tr>`}
+const ST=O.map((t,i)=>{const s=sm.S[t]||{done:0,upc:0,miss:0,made:0},ex=W.ex.includes(t);return`<tr${ex?' style="opacity:.5"':''}><td><input type="checkbox" ${ex?'':'checked'} onchange="wex(${i})"></td><td>${i+1}</td><td><b>${esc(t)}</b></td><td>${ex?'–':s.done}</td><td>${ex?'–':s.upc}</td><td>${ex?'–':s.miss}</td><td>${ex?'–':s.made}</td><td>${sm.qs.includes(t)?'<span class="wt mk">make-up due</span>':'—'}</td><td><button class="btn" onclick="wmv(${i},-1)">▲</button> <button class="btn" onclick="wmv(${i},1)">▼</button></td></tr>`}).join('');
+const hl=Object.keys(W.hol).sort().filter(d=>d>=td);
+const msg=pv?wmsg(pv):'';
+return`<div id="wmain" class="np">
+<div class="card"><b style="font-size:17px">🤝 Teachers’ Welcome Duty – school gate, ${esc(W.time)}</b><p style="color:var(--m);margin:6px 0 0">Teachers take the duty in turn (Monday–Friday). Saturday, Sunday and holidays are skipped. Press <b style="display:inline;font-size:inherit">Leave</b> on a teacher (best one day before the duty) and the next teacher is given the duty; the teacher who missed it gets a make-up duty on the first day he/she is present, and it is counted. Teachers marked Absent/Leave in <i>Attendance</i> are skipped automatically.</p></div>
+<div class="card" style="margin-top:10px"><b style="font-size:16px">🚫 Teachers with NO welcome duty</b><p style="color:var(--m);margin:6px 0 8px">Tap a teacher to exempt him/her from welcome duty (shown in red). Tap again to bring back into the rotation.</p><div class="bar">${O.map((t,i)=>`<button class="btn ${W.ex.includes(t)?'r':''}" onclick="wex(${i})">${W.ex.includes(t)?'🚫 ':''}${esc(t)}</button>`).join('')}</div></div>
+<div class="bar" style="margin-top:10px"><button class="btn" onclick="wpast=${wpast?0:1};R()">${wpast?'Hide past days':'Show past days'}</button><button class="btn p" onclick="wprint()">🖨 Print roster</button></div>
+<div class="w"><table><tr><th>Date</th><th>Day</th><th>Welcome duty teachers</th><th>Message</th><th>Holiday</th></tr>${rows||'<tr><td colspan="5">No duty days. Check that teachers are added and included.</td></tr>'}</table></div>
+<div class="card" style="margin-top:12px"><b style="font-size:16px">💬 WhatsApp message</b>
+<div class="bar"><label>Send to <select onchange="wset('mode',this.value)"><option value="group" ${W.mode=='group'?'selected':''}>WhatsApp group (choose it in WhatsApp)</option><option value="num" ${W.mode=='num'?'selected':''}>One number</option></select></label><label>Group name (shown in reminder) <input value="${esc(W.grp).replace(/"/g,'&quot;')}" onchange="wset('grp',this.value)" placeholder="e.g. GHSS Staff"></label><label>Number (e.g. 923001234567) <input inputmode="tel" value="${esc(W.num).replace(/"/g,'&quot;')}" onchange="wset('num',this.value)" placeholder="92300…"></label></div>
+<div class="bar"><label>Principal name <input value="${esc(W.princ).replace(/"/g,'&quot;')}" onchange="wset('princ',this.value)"></label><label>Duty time <input value="${esc(W.time).replace(/"/g,'&quot;')}" style="width:110px" onchange="wset('time',this.value)"></label></div>
+<div class="bar"><label><input type="checkbox" ${W.auto?'checked':''} onchange="wset('auto',+this.checked)"> Remind me automatically one day before duty</label><label>Reminder time <input type="time" value="${W.rt}" onchange="wset('rt',this.value)"></label><button class="btn" onclick="wics()">📅 Phone calendar reminders (.ics)</button></div>
+<div class="bar"><label>Preview message for date <input type="date" value="${pv}" onchange="wpvd=this.value;R()"></label></div>
+${msg?`<div class="wmsg">${esc(msg)}</div><div class="bar"><button class="btn g" onclick="wsend('${pv}')">✉ Send on WhatsApp</button><button class="btn" onclick="wcopy('${pv}')">📋 Copy message</button></div>`:'<p style="color:var(--m)">No duty on the chosen date.</p>'}
+<p style="color:var(--m);font-size:13px;margin:0">WhatsApp does not allow any app to send to a group silently by itself. At the reminder time (while this app is open, or when you open it) a banner appears at the top – one tap opens WhatsApp with the message ready, and you press Send. The .ics file puts the same reminder in your phone calendar so it rings even when the app is closed.</p></div>
+<div class="card" style="margin-top:12px"><b style="font-size:16px">⚙ Duty settings</b>
+<div class="bar"><label>Teachers per day <select onchange="wset('per',+this.value)">${[1,2,3,4].map(n=>`<option ${W.per==n?'selected':''}>${n}</option>`).join('')}</select></label><label>Roster starts on <input type="date" value="${W.from}" onchange="wset('from',this.value)"></label><label>Show next <select onchange="wset('ahead',+this.value)">${[14,30,45,60,90].map(n=>`<option value="${n}" ${W.ahead==n?'selected':''}>${n} days</option>`).join('')}</select></label></div>
+<div class="bar"><label><input type="checkbox" ${W.sat?'checked':''} onchange="wset('sat',+this.checked)"> Saturday is a holiday (untick to give duty on Saturday)</label><label><input type="checkbox" ${W.sun?'checked':''} onchange="wset('sun',+this.checked)"> Sunday is a holiday</label></div>
+<b style="font-size:14px">🏖 Add holiday</b><div class="bar"><label>From <input type="date" id="hf"></label><label>To (optional) <input type="date" id="ht"></label><label>Reason <input id="hr" placeholder="Eid / Summer vacation"></label><button class="btn p" onclick="wah()">Add holiday</button></div>
+${hl.length?`<div class="bar">${hl.map(d=>`<button class="btn" onclick="wrh('${d}')" title="Remove">${wds(d)} – ${esc(W.hol[d])} ✖</button>`).join('')}</div>`:''}</div>
+<h3>Teachers in rotation</h3><div class="w"><table><tr><th>Takes duty</th><th>#</th><th>Teacher</th><th>Duties done</th><th>Upcoming</th><th>Missed (leave)</th><th>Made up</th><th>Status</th><th>Order</th></tr>${ST||'<tr><td colspan="9">No teachers.</td></tr>'}</table></div>
+<p style="color:var(--m);font-size:13px">Untick “Takes duty” (or tap the teacher in the red-button list above) to keep him/her out of the rotation. Use ▲ ▼ to change the order. “Done” counts duties up to today; “Missed” counts turns skipped because the teacher was absent or on leave.</p></div>
+<div class="sheet wp"><div class="hd"><h2>GHSS Pacca Ghalwan (M.Garh)</h2><h3>Teachers’ Welcome Duty Roster</h3><div>School entrance gate – ${esc(W.time)}</div></div><table><tr><th style="width:15%">Date</th><th style="width:14%">Day</th><th>Duty teachers</th><th style="width:22%">Signature</th></tr>${ros}</table><div class="sig"><div><span></span>Principal<br><b>${esc(W.princ)}</b></div></div></div>`}
+function wdc(){const td=wtd(),tm=wadd(td,1),r=wsim(tm).res,f=d=>!wwork(d)?'Holiday':(r[d]&&r[d].t.length?r[d].t.map(esc).join(' &amp; '):'—');
+return`<div class="card" style="margin-top:10px"><b style="font-size:16px">🤝 Welcome Duty (gate, ${esc(W.time)})</b><div style="margin:6px 0;line-height:1.7">Today: <strong>${f(td)}</strong><br>Tomorrow: <strong>${f(tm)}</strong></div><button class="btn p" onclick="go('wd')">Open Welcome Duty</button></div>`}
+const _dash=dash;dash=function(){return _dash()+wdc()};
+function wRen(a,b){W.order=W.order.map(n=>n==a?b:n);W.ex=W.ex.map(n=>n==a?b:n);for(const d in W.lv)if(W.lv[d][a]){W.lv[d][b]=1;delete W.lv[d][a]}wsave()}
+const _ren=ren,_renT=renT;ren=function(a,b){_ren(a,b);wRen(a,b)};
+renT=function(){const a=$('#r1')&&$('#r1').value,b=$('#r2')&&$('#r2').value.trim();_renT();if(a&&b){wRen(a,b);R()}};
+
+/* ===== Teachers who are never auto-filled as substitutes (manual substitution still allowed) ===== */
+let NS=ld('nosub',null);
+if(!NS){NS=TL().filter(t=>/^Amanullah/i.test(t));if(!NS.length)NS=['Amanullah Qureshi'];sv('nosub',NS)}
+function nst(i){const t=TL()[i];NS=NS.includes(t)?NS.filter(x=>x!=t):NS.concat(t);sv('nosub',NS);R()}
+function nsc(){return`<div class="card" style="margin-top:10px"><b style="font-size:16px">🚫 No automatic substitution</b><p style="color:var(--m);margin:6px 0 8px">Teachers shown in red are never chosen automatically as a substitute. You can still add them yourself with <i>Manual Substitution</i> or by choosing them in the substitute list. Tap a name to switch on/off.</p><div class="bar">${TL().map((t,i)=>`<button class="btn ${NS.includes(t)?'r':''}" onclick="nst(${i})">${NS.includes(t)?'🚫 ':''}${esc(t)}</button>`).join('')}</div></div>`}
+const _setv=setv;setv=function(){return _setv()+nsc()};
+const _subv2=subv2;subv2=function(){const n=NS.filter(t=>TL().includes(t));return(n.length?`<div class="card np" style="margin-bottom:10px;border-left:4px solid var(--o)">🚫 Not auto-filled: <strong>${n.map(esc).join(', ')}</strong> – add manually if needed. (Change in Settings)</div>`:'')+_subv2()};
+const _wRen=wRen;wRen=function(a,b){_wRen(a,b);NS=NS.map(n=>n==a?b:n);sv('nosub',NS)};
+
+R();
+</script><script>
+/* ===== ONLINE SYNC (Firebase Firestore) ===== */
+const FIREBASE_CONFIG={apiKey:"AIzaSyBh5yzMbN8KsjENJzX7kY41tcvL8t9hxUY",authDomain:"school-sync-f2377.firebaseapp.com",projectId:"school-sync-f2377",appId:"1:1065175050512:web:27cce416f6bbb7b832dd95"};
+const SYNC=(()=>{
+const KEYS=['pt','tex','tt','att','man','xtra','nosub','grx','wd'];
+const SDK='https://www.gstatic.com/firebasejs/10.12.2/';
+const rd=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}};
+const wr=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+let TS=rd('sync_ts',{}),dirty=new Set(rd('sync_dirty',[])),code=localStorage.getItem('sync_code')||'';
+let db=null,unsub=null,sdk=null,pending=false,status='',last='';
+const cfgOK=()=>!!(FIREBASE_CONFIG.apiKey&&FIREBASE_CONFIG.projectId);
+const APPLY={pt:v=>{PT=v},tex:v=>{TX=v},tt:v=>{D=v},att:v=>{A=v},man:v=>{M=v},xtra:v=>{X=v},nosub:v=>{NS=v},grx:v=>{GRX=v},wd:v=>{W=Object.assign({},WD0,v)}};
+function setStatus(s){status=s;const e=document.getElementById('syncst');if(e)e.textContent=text()}
+function text(){
+ if(!cfgOK())return'⚠ Setup needed: paste the Firebase keys into the file (FIREBASE_CONFIG).';
+ if(!code)return'Not connected. Enter a Sync code below.';
+ if(status.startsWith('error'))return'⚠ '+status;
+ if(!navigator.onLine||status=='offline')return'📴 Offline – changes are saved on this device and will upload automatically when online.';
+ if(status=='synced')return'✅ Synced'+(last?' at '+last:'')+(dirty.size?' (uploading…)':'');
+ return'🔄 Connecting…'}
+function loadSDK(){return sdk||(sdk=new Promise((res,rej)=>{
+ const L=u=>new Promise((a,b)=>{const s=document.createElement('script');s.src=u;s.onload=a;s.onerror=()=>b(new Error('load'));document.head.appendChild(s)});
+ L(SDK+'firebase-app-compat.js').then(()=>L(SDK+'firebase-firestore-compat.js')).then(res,e=>{sdk=null;rej(e)})}))}
+function start(){
+ if(!cfgOK()||!code)return setStatus('');
+ if(!navigator.onLine)return setStatus('offline');
+ setStatus('connecting');
+ loadSDK().then(()=>{
+  if(!db){firebase.initializeApp(FIREBASE_CONFIG);db=firebase.firestore()}
+  if(unsub)unsub();
+  unsub=db.doc('school/'+code).onSnapshot(onSnap,e=>setStatus('error: '+(e.code||e.message)));
+ }).catch(()=>setStatus('offline'))}
+function onSnap(snap){
+ const d=snap.exists?snap.data():{};let changed=false;
+ KEYS.forEach(k=>{
+  const rt=d['t_'+k]||0,lt=TS[k]||0;
+  if(rt>lt){try{const raw=d['d_'+k];const v=JSON.parse(raw);localStorage.setItem(k,raw);APPLY[k](v);TS[k]=rt;dirty.delete(k);changed=true}catch(e){}}
+  else if(lt>rt||(rt==0&&localStorage.getItem(k)!==null)){if(!TS[k])TS[k]=Date.now();dirty.add(k)}
+ });
+ wr('sync_ts',TS);wr('sync_dirty',[...dirty]);
+ if(changed)refresh();
+ if(!snap.metadata.fromCache){last=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});setStatus('synced')}
+ flush()}
+function flush(){
+ if(!db||!code||!dirty.size||!navigator.onLine)return;
+ const keys=[...dirty],sent={},o={};
+ keys.forEach(k=>{const raw=localStorage.getItem(k);if(raw===null)return;sent[k]=TS[k];o['d_'+k]=raw;o['t_'+k]=TS[k]});
+ if(!Object.keys(o).length)return;
+ db.doc('school/'+code).set(o,{merge:true}).then(()=>{
+  keys.forEach(k=>{if(TS[k]===sent[k])dirty.delete(k)});wr('sync_dirty',[...dirty]);
+  last=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});setStatus('synced')
+ }).catch(e=>setStatus('error: '+(e.code||e.message)))}
+function push(k){if(!KEYS.includes(k))return;TS[k]=Date.now();dirty.add(k);wr('sync_ts',TS);wr('sync_dirty',[...dirty]);flush()}
+function refresh(){
+ const a=document.activeElement,t=a&&a.tagName||'';
+ if(document.querySelector('.ov')||/INPUT|TEXTAREA|SELECT/.test(t)){pending=true;return}
+ pending=false;R()}
+setInterval(()=>{if(pending)refresh()},3000);
+window.addEventListener('online',start);
+window.addEventListener('offline',()=>setStatus('offline'));
+return{
+ push,start,text,
+ code:()=>code,
+ set(c){c=(c||'').replace(/[^A-Za-z0-9_-]/g,'');if(c.length<8){alert('Sync code must be at least 8 letters/numbers (use Generate for a safe one).');return false}
+  code=c;localStorage.setItem('sync_code',c);if(unsub){unsub();unsub=null}status='';start();return true},
+ off(){if(unsub){unsub();unsub=null}code='';localStorage.removeItem('sync_code');setStatus('')},
+ gen(){const a='abcdefghjkmnpqrstuvwxyz23456789';let s='';const r=crypto.getRandomValues(new Uint8Array(20));r.forEach(x=>s+=a[x%a.length]);return s}
+}})();
+window.__sync=SYNC.push;
+function syncCard(){return`<div class="card" style="margin-top:10px"><b style="font-size:16px">☁️ Online Sync</b><p style="color:var(--m);margin:6px 0">Use the <b>same Sync code</b> on every device. Any change on one device appears on the others automatically. Works offline and uploads when internet returns.</p><p id="syncst" style="margin:6px 0">${SYNC.text()}</p><div class="bar"><input id="syc" value="${SYNC.code()}" placeholder="Sync code" style="flex:1;min-width:180px"><button class="btn p" onclick="if(SYNC.set(document.getElementById('syc').value))R()">Connect</button><button class="btn g" onclick="document.getElementById('syc').value=SYNC.gen()">Generate</button><button class="btn r" onclick="SYNC.off();R()">Disconnect</button></div></div>`}
+const _setv3=setv;setv=function(){return _setv3()+syncCard()};
+SYNC.start();
+</script></body></html>
